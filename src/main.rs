@@ -58,7 +58,7 @@ impl Component for App {
                 self.search_title = s.clone();
                 if s.len() >= 3 {
                 spawn_local(async move {
-                    let res: Res = Request::get(&format!("{}/search/{}", base_url() ,&s))
+                    let res: Res = Request::get(&format!("/search/{}", base_url() ,&s))
                         .send()
                         .await
                         .unwrap()
@@ -81,7 +81,7 @@ impl Component for App {
                 let id = val.clone();
                 let link = ctx.link().clone();
                 spawn_local(async move {
-                    let res: String = Request::get(&format!("{}/id/{}", base_url(),&id))
+                    let res: String = Request::get(&format!("/id/{}", base_url(),&id))
                         .send()
                         .await
                         .unwrap()
@@ -97,7 +97,7 @@ impl Component for App {
                 let title = self.search_title.clone();
                 let link = ctx.link().clone();
                 spawn_local(async move {
-                    let res: String = Request::get(&format!("{}/one/{}", base_url(),&title))
+                    let res: String = Request::get(&format!("/one/{}", base_url(),&title))
                         .send()
                         .await
                         .unwrap()
